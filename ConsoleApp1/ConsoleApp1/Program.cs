@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -8,8 +9,34 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            MainMenu M = new MainMenu();
-            M.catalog();
+            List<user> users = new List<user>();
+            user u = new user("login", "password");
+            string path = @"D:\HLAM\BD.txt";
+
+            using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+            {
+                string line;
+                int i = 0;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    i++;
+                }
+                for (int v = 0; v <= i; v++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        line = u.password;
+                        users.Add(new user(u.login, u.password));
+                    }
+                    else
+                    {
+                        line = u.login;
+                        users.Add(new user(u.login, u.password));
+                    }
+                }
+            }
+            account a = new account();
+            a.autorization("login2", "password2");
         }
     }
     class ConsoleHelper
@@ -323,38 +350,162 @@ namespace ConsoleApp1
                 }
             }
             else if (choice == 4)
-                {
-                    string pather = @"D:\HLAM\basket.txt";
+            {
+                string pather = @"D:\HLAM\basket.txt";
 
-                    try
+                try
+                {
+                    using (StreamReader sr = new StreamReader(pather))
                     {
-                        using (StreamReader sr = new StreamReader(pather))
-                        {
-                            Console.WriteLine(sr.ReadToEnd());
-                        }
-                        int choice2 = Convert.ToInt32(Console.ReadLine());
-                        if (choice2 == 1)
-                        {
-                            catalog();
-                        }
-                        if (choice2 == 2)
-                        {
-                            File.WriteAllText(@"D:\HLAM\basket.txt", string.Empty);
-                            File.WriteAllText(@"D:\HLAM\sum.txt", string.Empty);
-                            catalog();
-                        }
+                        Console.WriteLine(sr.ReadToEnd());
                     }
-                    catch (Exception e)
+                    int choice2 = Convert.ToInt32(Console.ReadLine());
+                    if (choice2 == 1)
                     {
-                        Console.WriteLine(e.Message);
+                        catalog();
                     }
+                    if (choice2 == 2)
+                    {
+                        File.WriteAllText(@"D:\HLAM\basket.txt", string.Empty);
+                        File.WriteAllText(@"D:\HLAM\sum.txt", string.Empty);
+                        catalog();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
         }
-        class wallet        //кошелек нахуй
+    }
+    class wallet        //кошелек нахуй
+    {
+        public int count = 1000;//стандарт нахуй
+    }
+    class user
+    {
+        public string login, password;
+        public user(string login, string password)
         {
-            public int count = 1000;//стандарт нахуй
+            this.login = login;
+            this.password = password;
         }
     }
+    class account
+    {
+        user u = new user("login", "password");
+        public string login2;
+        public string password2;
+        public string registration;
+        public string new_login;
+        public string new_password;
+        public string re_new_password;
+        MainMenu M = new MainMenu();
+        public void autorization(string login2, string password2)
+        {
+            
+            ConsoleHelper.WriteMessage("Желаете ли вы зарегистрироватся?\n1.Да\n2.Нет");
+            registration = Console.ReadLine();
+            if (registration == "1")
+            {
+                regist("new_login", "new_password");
+            }
+            ConsoleHelper.WriteMessage("Логин:");
+            login2 = Console.ReadLine();
+            ConsoleHelper.WriteMessage("Пароль:");
+            password2 = Console.ReadLine();
+            if (Valid(new_login, login2, password2) == true)
+            {
+                M.catalog();
+            }
+            else if(Valid(new_login, login2, password2) == false)
+            {
+                ConsoleHelper.WriteMessage("Пароль или логин введены неправильно. Попробуйте еще раз.");
+                autorization("login2", "password2");
+            }
+        }
+        List<user> users = new List<user>();
+        public void regist(string new_login, string new_password)
+        {
+            string writePath = @"D:\HLAM\BD.txt";
+            ConsoleHelper.WriteMessage("Здравствуйте! Вы зашли на регистрацию.\nВведите ваш логин:");
+            new_login = Console.ReadLine();
+            if (Valid(new_login, login2, password2) == true)
+            {   
+                using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default))
+                {
+                    sw.WriteLine(new_login);
+                }
+            }
+            else if(Valid(new_login, login2, password2) == false)
+            {
+                ConsoleHelper.WriteMessage("Ошибка! Такой логин уже зарегистрирован");
+                regist("new_login", "new_password");
+            }
+            ConsoleHelper.WriteMessage("Ваш пароль:");
+            new_password = Console.ReadLine();
+            writePath = @"D:\HLAM\BD.txt";
+            using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default))
+            {
+                sw.WriteLine(new_password);
+            }
+            ConsoleHelper.WriteMessage("Повторите Ваш пароль:");
+            re_new_password = Console.ReadLine();
+            if (re_new_password != new_password)
+            {
+                ConsoleHelper.WriteMessage("Вы ввели повторный пароль неправильно.");
+                regist("new_login", "new_password");
+            }
+            else
+            {
+                ConsoleHelper.WriteMessage("Поздравляем с регистрацией!");
+                string path = @"D:\HLAM\BD.txt";
+
+                using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+                {
+                    string line;
+                    int i = 0;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        i++;
+                    }
+                    for (int a = 0; a <= i; a++)
+                    {
+                        if(i%2 == 0)
+                        {
+                            line = u.password;
+                            users.Add(new user(u.login, u.password));
+                        }
+                        else
+                        {
+                            line = u.login;
+                            users.Add(new user(u.login, u.password));
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        public bool Valid(string b, string c, string d)
+        {
+            for(int a =0; a < users.Count; a++) {
+                if (b == u.login)
+                {
+                    return false;
+                } else if (c != u.login || d != u.password)
+                {
+                    return false;
+
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+}
 
 
