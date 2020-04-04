@@ -1,0 +1,13 @@
+C:\Users\User\source\repos\ForLabs\ForLabs\obj\Debug\netcoreapp3.1\ForLabs.csprojAssemblyReference.cache
+C:\Users\User\source\repos\ForLabs\ForLabs\obj\Debug\netcoreapp3.1\ForLabs.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ForLabs\ForLabs\obj\Debug\netcoreapp3.1\ForLabs.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\ForLabs\ForLabs\obj\Debug\netcoreapp3.1\ForLabs.AssemblyInfo.cs
+C:\Users\User\source\repos\ForLabs\ForLabs\bin\Debug\netcoreapp3.1\ForLabs.exe
+C:\Users\User\source\repos\ForLabs\ForLabs\bin\Debug\netcoreapp3.1\ForLabs.deps.json
+C:\Users\User\source\repos\ForLabs\ForLabs\bin\Debug\netcoreapp3.1\ForLabs.runtimeconfig.json
+C:\Users\User\source\repos\ForLabs\ForLabs\bin\Debug\netcoreapp3.1\ForLabs.runtimeconfig.dev.json
+C:\Users\User\source\repos\ForLabs\ForLabs\bin\Debug\netcoreapp3.1\ForLabs.dll
+C:\Users\User\source\repos\ForLabs\ForLabs\bin\Debug\netcoreapp3.1\ForLabs.pdb
+C:\Users\User\source\repos\ForLabs\ForLabs\obj\Debug\netcoreapp3.1\ForLabs.dll
+C:\Users\User\source\repos\ForLabs\ForLabs\obj\Debug\netcoreapp3.1\ForLabs.pdb
+C:\Users\User\source\repos\ForLabs\ForLabs\obj\Debug\netcoreapp3.1\ForLabs.genruntimeconfig.cache
